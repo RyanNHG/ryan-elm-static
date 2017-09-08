@@ -1,5 +1,5 @@
-# ryan
-> A personal website made in elm.
+# ryan-elm
+> A static personal website made in elm.
 
 ### Local Development
 
