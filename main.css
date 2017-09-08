@@ -1,0 +1,138 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    font-weight: inherit;
+    line-height: 1.2;
+    margin: 0;
+}
+
+strong, b {
+    font-weight: normal;
+}
+
+.rich-text p {
+    margin-top: 1rem; 
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+a[href], .link {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    color: #3876C1;
+    position: relative;
+}
+
+a[href]:before, .link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: .1em;
+    width: 100%;
+    background: #369;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.link--active {
+    font-weight: normal;
+}
+
+a[href]:hover:before, a[href]:focus:before,
+.link:hover:before, .link:focus:before {
+    transform: scaleX(1);
+}
+
+a[href]:hover, a[href]:focus,
+.link:hover, .link:focus {
+    outline: none;
+}
+
+.app {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 0 1rem;
+}
+
+.navbar {
+    display: flex;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-bottom: solid #ccc 1px;
+}
+
+.brand {
+    font-size: 1.5rem;
+}
+
+.navlinks {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    text-transform: lowercase;
+}
+
+.navlink {
+    font-size: 1.5rem;
+}
+
+.navlink:not(:first-child) {
+    margin-left: .5em;
+}
+
+.page__title {
+    font-weight: normal;
+    text-transform: lowercase;
+}
+
+.page__subtitle {
+    font-size: 1.5rem;
+    margin: 0;
+    margin-top: .5rem;
+}
+
+.section {
+    margin-top: 1rem;
+}
+
+.section__title {
+    font-size: 1.75rem;
+    font-weight: normal;
+    text-transform: lowercase;
+}
+
+.section__content {
+    margin-top: .5rem;
+}
+
+.footer {
+    display: flex;
+    padding-top: 1rem;
+    border-top: solid #ccc 1px;
+    margin-top: 1.5rem;
+}
+
+.footer__copyright {
+    flex: 1;
+}
+
+.footer__link {
+    font-size: 1rem;
+    text-transform: lowercase;
+}
+
+.footer__link:not(:first-child) {
+    margin-left: .5em;
+}
