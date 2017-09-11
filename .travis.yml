@@ -4,7 +4,7 @@ node_js:
 before_script:
   - npm install -g gulp-cli elm
 script:
-  - gulp pug
+  - gulp
 deploy:
   provider: pages
   skip_cleanup: true
