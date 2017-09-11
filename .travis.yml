@@ -4,23 +4,13 @@ node_js:
 before_script:
   - npm install -g gulp-cli elm
 script:
-  - gulp
-  - rm .gitignore
-  - rm -rf node_modules/
-  - rm -rf elm-stuff/
-  - rm -rf src/
-  - rm -rf assets/
-  - rm -rf posts/
-  - rm -rf *.json
-  - rm -rf *.pug
-  - rm -rf *.js
-  - cp -r _docs/* .
-  - rm -rf _docs
+  - gulp pug
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   repo: ryannhg/ryannhg.github.io
   target_branch: master
+  local_dir: _docs
   on:
     branch: master
