@@ -15,9 +15,12 @@ script:
   - rm -rf *.pug
   - rm -rf *.js
   - cp -r _docs/* .
+  - rm -rf _docs
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  repo: ryannhg.github.io
+  target_branch: master
   on:
     branch: master
