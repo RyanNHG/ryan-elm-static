@@ -3,7 +3,7 @@
 
 ### Local Setup
 
-1. __`npm install -g static-server gulp-cli`__
+1. __`npm install -g static-server gulp-cli elm`__
 1. __`npm install`__
 1. __`gulp`__
 1. __`static-server`__
