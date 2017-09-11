@@ -18,5 +18,3 @@ import Html exposing (text)
 main =
     text "Hello World!"
 ```
-
-If we take a look at the line `text "Hello World!"`, we'll see that it is a function.

@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Navigation exposing (Location)
 import Markdown
+import UrlParser as Url exposing (Parser, top, (</>))
 
 
 markdown : String -> Html Msg
@@ -83,21 +84,31 @@ subscriptions model =
 
 getPage : Flags -> Location -> Page
 getPage flags location =
-    case location.pathname of
-        "/" ->
-            Homepage
-
-        "/thoughts" ->
-            Thoughts
-
-        "/thoughts/elm-is-nice" ->
-            getThoughtDetailPage flags
-
-        "/projects" ->
-            Projects
+    case Url.parsePath (route flags) location of
+        Just page ->
+            page
 
         _ ->
             NotFound
+
+
+route : Flags -> Parser (Page -> a) a
+route flags =
+    let
+        tdFlags =
+            Maybe.withDefault (ThoughtDetailFlags "" "" "") flags
+    in
+        Url.oneOf
+            [ Url.map Homepage top
+            , Url.map Thoughts (Url.s "thoughts")
+            , Url.map (getThoughtDetailPageMsg tdFlags) (Url.s "thoughts" </> Url.string)
+            , Url.map Projects (Url.s "projects")
+            ]
+
+
+getThoughtDetailPageMsg : ThoughtDetailFlags -> String -> Page
+getThoughtDetailPageMsg flags _ =
+    ThoughtDetail flags
 
 
 getThoughtDetailPage : Flags -> Page
