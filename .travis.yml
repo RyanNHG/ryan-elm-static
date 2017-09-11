@@ -1,9 +1,20 @@
 language: node_js
 node_js:
-  - "lts/*"
+  - "8"
 before_script:
   - npm install -g gulp-cli elm
-script: gulp
+script:
+  - gulp
+  - rm .gitignore
+  - rm -rf node_modules/
+  - rm -rf elm-stuff/
+  - rm -rf src/
+  - rm -rf assets/
+  - rm -rf posts/
+  - rm -rf *.json
+  - rm -rf *.pug
+  - rm -rf *.js
+  - cp -r _docs/* .
 deploy:
   provider: pages
   skip_cleanup: true
