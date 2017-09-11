@@ -266,7 +266,11 @@ viewLinkListingSection title links =
 viewLinkListing : ( Link, String ) -> Html Msg
 viewLinkListing ( link, description ) =
     div [ class "link-listing__section" ]
-        [ a [ class "link-listing__link", href link.url, target link.url ]
+        [ a
+            [ class "link-listing__link"
+            , href link.url
+            , target (linkTarget link)
+            ]
             [ text link.label ]
         , p [ class "link-listing__description" ] [ text description ]
         ]
