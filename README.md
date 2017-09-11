@@ -8,6 +8,7 @@
 1. __`npm install -g static-server gulp-cli elm`__
 1. __`npm install`__
 1. __`gulp`__
+1. __`cd _docs`__
 1. __`static-server`__
 
 __To watch for file changes__
