@@ -277,7 +277,7 @@ viewViewMoreLink link =
     a
         [ class "view-more__link"
         , href link.url
-        , target link.url
+        , target (linkTarget link)
         ]
         [ text link.label
         , span [] [ text link.label ]
