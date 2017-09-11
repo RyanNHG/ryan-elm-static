@@ -1,13 +1,13 @@
-# ryan-elm
+# ryan-elm-static
 > A static personal website made in elm.
 
 ### Local Setup
 
-1. __`npm i -g static-server elm`__
-1. __`elm make src/Main.elm --output app.js`__
+1. __`npm install -g static-server gulp-cli`__
+1. __`npm install`__
+1. __`gulp`__
 1. __`static-server`__
 
 __To watch for file changes__
 
-1. __`npm i -g chokidar-cli`__
-1. __`chokidar 'src/**/*.elm' -c 'elm make src/Main.elm --output app.js'`__
+1. __`gulp watch`__

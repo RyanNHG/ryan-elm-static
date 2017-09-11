@@ -12,16 +12,43 @@ h1,h2,h3,h4,h5,h6,p {
     margin: 0;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+}
+
 strong, b {
     font-weight: normal;
 }
 
 .rich-text p {
     margin-top: 1rem; 
+    line-height: 1.4;
+}
+
+.rich-text blockquote {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #666;
+    border-left: solid #ccc 4px;
+    padding-left: 8px; 
+    font-style: italic;
+}
+
+.rich-text pre {
+    background-color: #333;
+    color: white;
+    padding: 2em 1em;
+    margin: 0;
+    margin-top: 1rem;
 }
 
 h1 {
     font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 a[href], .link {
@@ -37,11 +64,12 @@ a[href]:before, .link:before {
     display: block;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -.1em;
     height: .1em;
     width: 100%;
     background: #369;
     transform: scaleX(0);
+    transform-origin: left;
     transition: transform .3s ease-in-out;
 }
 
@@ -104,7 +132,7 @@ a[href]:hover, a[href]:focus,
 }
 
 .section {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .section__title {
@@ -113,8 +141,62 @@ a[href]:hover, a[href]:focus,
     text-transform: lowercase;
 }
 
-.section__content {
-    margin-top: .5rem;
+.link-listing__link {
+    font-size: 2rem;
+    text-transform: lowercase;
+}
+
+.link-listing__description {
+    margin-top: 1rem;
+    border-left: solid .25em #ccc;
+    padding-left: .5em;
+}
+
+.link-listing__section {
+    margin-top: 1rem;
+}
+
+.view-more__section {
+    margin-top: 2rem;
+    display: flex;
+}
+
+a.view-more__link {
+    font-size: 1.25rem;
+    box-sizing: border-box;
+    padding: .5em 1em;
+    text-transform: lowercase;
+    border: solid 2px #369;
+}
+
+a.view-more__link:not(:first-child) {
+    margin-left: 1rem;
+} 
+
+a.view-more__link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #369;
+}
+
+a.view-more__link span {
+    position: absolute;
+    top: .5em;
+    left: 1em;
+    color: white;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width .3s ease-in-out;
+}
+
+a.view-more__link:hover span {
+    width: 100%;
 }
 
 .footer {
@@ -122,6 +204,7 @@ a[href]:hover, a[href]:focus,
     padding-top: 1rem;
     border-top: solid #ccc 1px;
     margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .footer__copyright {

@@ -1,0 +1,23 @@
+[
+    {
+        "path": "/",
+        "title": "Ryan",
+        "description": "A web developer with no social skills."
+    },
+    {
+        "path": "/thoughts",
+        "title": "Thoughts | Ryan",
+        "description": "I don't know about thought leadership, but these are all definitely thoughts."
+    },
+    {
+        "path": "/projects",
+        "title": "Projects | Ryan",
+        "description": "I've done some things, man. Things I'm not proud of. Most of those involved jQuery."
+    },
+    {
+        "path": "/thoughts/elm-is-nice",
+        "title": "Elm is Nice | Thoughts | Ryan",
+        "description": "I like to code with it from time to time.",
+        "post": "elm-is-nice.md"
+    }
+]

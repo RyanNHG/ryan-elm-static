@@ -11,9 +11,9 @@ markdown =
     Markdown.toHtml []
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Navigation.program
+    Navigation.programWithFlags
         SetPage
         { init = init
         , view = view
@@ -27,6 +27,7 @@ type alias Model =
     , navbarLinks : List Link
     , location : Location
     , footerLinks : List Link
+    , flags : Flags
     }
 
 
@@ -39,6 +40,8 @@ type alias Link =
 type Page
     = Homepage
     | Thoughts
+    | ThoughtDetail ThoughtDetailFlags
+    | Projects
     | NotFound
 
 
@@ -46,17 +49,29 @@ type Msg
     = SetPage Location
 
 
-init : Location -> ( Model, Cmd Msg )
-init location =
+type alias Flags =
+    Maybe ThoughtDetailFlags
+
+
+type alias ThoughtDetailFlags =
+    { title : String
+    , description : String
+    , post : String
+    }
+
+
+init : Flags -> Location -> ( Model, Cmd Msg )
+init flags location =
     ( Model
         (Link "ryan" "/")
         [ Link "Thoughts" "/thoughts"
-        , Link "Work" "/work"
+        , Link "Projects" "/projects"
         ]
         location
         [ Link "Github" "https://www.github.com/ryannhg"
         , Link "Twitter" "https://www.twitter.com/ryan_nhg"
         ]
+        flags
     , Cmd.none
     )
 
@@ -66,8 +81,8 @@ subscriptions model =
     Sub.none
 
 
-getPage : Location -> Page
-getPage location =
+getPage : Flags -> Location -> Page
+getPage flags location =
     case location.pathname of
         "/" ->
             Homepage
@@ -75,7 +90,23 @@ getPage location =
         "/thoughts" ->
             Thoughts
 
+        "/thoughts/elm-is-nice" ->
+            getThoughtDetailPage flags
+
+        "/projects" ->
+            Projects
+
         _ ->
+            NotFound
+
+
+getThoughtDetailPage : Flags -> Page
+getThoughtDetailPage flags =
+    case flags of
+        Just thoughtDetailFlags ->
+            ThoughtDetail thoughtDetailFlags
+
+        Nothing ->
             NotFound
 
 
@@ -123,12 +154,18 @@ viewNavLink pathname link =
 
 viewPage : Model -> Html Msg
 viewPage model =
-    case getPage model.location of
+    case getPage model.flags model.location of
         Homepage ->
             viewHomepage model
 
         Thoughts ->
             viewThoughtsPage model
+
+        ThoughtDetail flags ->
+            viewThoughtDetailPage flags model
+
+        Projects ->
+            viewProjectsPage model
 
         NotFound ->
             viewNotFoundPage model
@@ -140,12 +177,14 @@ viewHomepage model =
         [ viewPageHeader
             "Ryan Haskell-Glatz"
             "A web developer with no social skills."
-        , section [ class "intro section" ]
+        , section [ class "section" ]
             [ h3 [ class "section__title" ] [ text "About me" ]
             , div [ class "section__content rich-text" ]
-                [ markdown """
-Hey there. My name is Ryan, and I like coding things. Sometimes I code things in [elm](http://www.elm-lang.org), my favorite programming language ever.
-            """ ]
+                [ markdown "Hey there. My name is Ryan, and I like coding things. Sometimes I code things in [elm](http://www.elm-lang.org), my favorite programming language ever." ]
+            ]
+        , div [ class "view-more__section" ]
+            [ viewViewMoreLink (Link "Here are some thoughts" "/thoughts")
+            , viewViewMoreLink (Link "Here are some projects" "/projects")
             ]
         ]
 
@@ -156,6 +195,38 @@ viewThoughtsPage model =
         [ viewPageHeader
             "Thoughts"
             "I don't know about __thought _leadership___, but these are all definitely thoughts."
+        , viewLinkListingSection "latest thoughts"
+            [ ( Link "Elm is Nice" "/thoughts/elm-is-nice", "I like to code with it from time to time." )
+            ]
+        ]
+
+
+viewThoughtDetailPage : ThoughtDetailFlags -> Model -> Html Msg
+viewThoughtDetailPage flags model =
+    div [ class "page page--thoughts rich-text" ]
+        [ markdown flags.post
+        ]
+
+
+viewProjectsPage : Model -> Html Msg
+viewProjectsPage model =
+    div [ class "page page--projects" ]
+        [ viewPageHeader
+            "Projects"
+            "I've done some things, man. Things I'm not proud of. Most of those involved jQuery."
+        , viewLinkListingSection "latest projects"
+            [ ( Link "Kicksharp" "https://github.com/RyanNHG/kicksharp"
+              , "An attempt at unifying frontend and backend C# development. With .NET Core, both Mac and Windows users can collaborate together."
+              )
+            , ( Link "Jangle" "https://github.com/RyanNHG/jangle-api"
+              , "A simple CMS written in Typescript and Elm that generates RESTful API endpoints for any application."
+              )
+            , ( Link "Baroot" "https://github.com/RyanNHG/baroot"
+              , "A goofy name for a goofy social network, written with Elm and Typescript for anonymous posts called 'squiggs'."
+              )
+            ]
+        , div [ class "view-more__section" ]
+            [ viewViewMoreLink (Link "Check out more projects here" "https://www.github.com/ryannhg") ]
         ]
 
 
@@ -170,6 +241,35 @@ viewPageHeader title subtitle =
     div [ class "page__header" ]
         [ h1 [ class "page__title" ] [ text title ]
         , div [ class "page__subtitle" ] [ markdown subtitle ]
+        ]
+
+
+viewLinkListingSection : String -> List ( Link, String ) -> Html Msg
+viewLinkListingSection title links =
+    div [ class "section" ]
+        [ h3 [ class "section__title" ] [ text title ]
+        , div [ class "section__content" ] (List.map viewLinkListing links)
+        ]
+
+
+viewLinkListing : ( Link, String ) -> Html Msg
+viewLinkListing ( link, description ) =
+    div [ class "link-listing__section" ]
+        [ a [ class "link-listing__link", href link.url, target link.url ]
+            [ text link.label ]
+        , p [ class "link-listing__description" ] [ text description ]
+        ]
+
+
+viewViewMoreLink : Link -> Html Msg
+viewViewMoreLink link =
+    a
+        [ class "view-more__link"
+        , href link.url
+        , target link.url
+        ]
+        [ text link.label
+        , span [] [ text link.label ]
         ]
 
 
