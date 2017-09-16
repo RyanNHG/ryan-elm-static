@@ -195,7 +195,8 @@ a.view-more__link span {
     transition: width .3s ease-in-out;
 }
 
-a.view-more__link:hover span {
+a.view-more__link:hover span,
+a.view-more__link:focus span{
     width: 100%;
 }
 
