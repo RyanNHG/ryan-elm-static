@@ -207,7 +207,8 @@ viewThoughtsPage model =
             "Thoughts"
             "I don't know about __thought _leadership___, but these are all definitely thoughts."
         , viewLinkListingSection "latest thoughts"
-            [ ( Link "Elm is Nice" "/thoughts/elm-is-nice", "I like to code with it from time to time." )
+            [ ( Link "arrow functions are life." "/thoughts/arrow-functions-are-life", "when ES6 enables you to do neat stuff." )
+            , ( Link "elm is nice." "/thoughts/elm-is-nice", "I like to code with it from time to time." )
             ]
         ]
 

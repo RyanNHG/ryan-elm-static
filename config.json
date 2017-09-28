@@ -1,23 +1,29 @@
 [
     {
         "path": "/",
-        "title": "Ryan",
+        "title": "ryan.",
         "description": "A web developer with no social skills."
     },
     {
         "path": "/thoughts",
-        "title": "Thoughts | Ryan",
+        "title": "thoughts. | ryan.",
         "description": "I don't know about thought leadership, but these are all definitely thoughts."
     },
     {
         "path": "/projects",
-        "title": "Projects | Ryan",
+        "title": "projects. ryan.",
         "description": "I've done some things, man. Things I'm not proud of. Most of those involved jQuery."
     },
     {
         "path": "/thoughts/elm-is-nice",
-        "title": "Elm is Nice | Thoughts | Ryan",
+        "title": "elm is nice. thoughts. ryan.",
         "description": "I like to code with it from time to time.",
         "post": "elm-is-nice.md"
+    },
+    {
+        "path": "/thoughts/arrow-functions-are-life",
+        "title": "arrow functions are life. thoughts. ryan.",
+        "description": "when ES6 enables you to do neat stuff.",
+        "post": "arrow-functions-are-life.md"
     }
 ]

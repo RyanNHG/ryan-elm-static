@@ -1,26 +1,17 @@
-mixin meta()
-  title=title
-  base( target="_blank" )
-  link( rel="icon", href="/favicon.png" )
-  meta( name="description", content=description )
-  meta( name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" )
-
-mixin styles()
-  link( rel="stylesheet", href="/main.css" )
-  link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" )
-
-mixin scripts()
-  script( src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" )
-  script( src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elm.min.js" )
-  script( type="text/javascript", src="/app.js" )
-  script( type="text/javascript" ).
-    Elm.Main.embed(document.getElementById('app'), !{JSON.stringify(flags || null)})
-
 doctype html
 html
   head
-    +meta
-    +styles
+    title=title
+    base( target="_blank" )
+    link( rel="icon", href="/favicon.png" )
+    meta( name="description", content=description )
+    meta( name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" )
+    link( rel="stylesheet", href="/main.css" )
+    link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" )
   body
     #app
-    +scripts
+    script( src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" )
+    script( src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elm.min.js" )
+    script( type="text/javascript", src="/app.js" )
+    script( type="text/javascript" ).
+      Elm.Main.embed(document.getElementById('app'), !{JSON.stringify(flags || null)})
