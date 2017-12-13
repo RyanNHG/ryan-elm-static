@@ -62,7 +62,7 @@ var getLength = (str) =>
   str.length
 ```
 
-Holy moly, you're now an arrow function pro! 
+Holy moly, you're an arrow function pro! 
 
 
 ### let's check some types!
